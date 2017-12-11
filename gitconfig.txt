@@ -1,0 +1,84 @@
+[user]
+
+	name = User
+	mail = mail@mail.com
+	email = mail@mail.com
+[core]
+
+	# opens on 'git commit'
+	editor = notepad
+
+[url "https://github.com/"]
+	insteadOf = gh:
+[url "https://gitlab.com/"]
+	insteadOf = gl:
+[color]
+	ui = true
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
+	plain = white
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[alias]
+	## commands
+	color-check = !git
+	list = !git ls-files
+
+	# git init
+	# git remote add origin [repo-url]
+	# git pull origin master
+
+	## git log
+	log-tiny = log --oneline --decorate
+	log-quick = log --pretty=format:'%Cgreen%ad %C(yellow)%an %Creset%s' --date=short -10
+	log-full = log --pretty=format:'%Cgreen%ad %C(yellow)%an %Creset%s' --date=short
+	log-stats = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat #shows changed files
+	log-graph = log --graph --pretty=format:'%Cred%h%Creset - %C(bold blue)<%an> %Creset%s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	log-graph-date-relative = log --graph --pretty=format:'%Cblue%an%Creset %s %Cgreen(%cr) %Creset' --abbrev-commit --date=relative
+	log-graph-light = log --graph --pretty=format:'On %Cgreen%ad %C(yellow)%an %Creset%s' --date=short
+	log-hash-only = log --pretty=format:'%h %H' #a nice background
+	log-last-commit = log -u
+
+	## git diff
+	local-changes = diff
+	waiting-for-push= diff --staged
+	
+	## show content (full diff) of a commit given a revision:
+	#dr  = "!f() { git diff "$1"^.."$1"; }; f"
+	#lc  = "!f() { git quicklog "$1"^.."$1"; }; f"
+	#diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+
+	## git stash
+
+ 	## git reset
+	#r1 = reset HEAD^
+	#r2 = reset HEAD^^
+	#rh = reset --hard
+	#rh1 = reset HEAD^ --hard
+	#rh2 = reset HEAD^^ --hard
+
+	## custom shorts
+	qog = !git log-quick
+	quicklog = !git log-quick
+	fog = !git log-full
+	update = !git local-changes
+	
+	## mix it up!
+	ace = !git status && git pull && git quicklog
+	stats = !git status && git diff
+
+	## testchamber
+	#ignore-test-txt = git config --global core.excludesfile test.txt
+	echothis = !sh -c 'echo && echo "echo1" && echo "echo2"'
